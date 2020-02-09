@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+
+
+    <script>
+    var arrCategory=['All','Fast Food','Electronic','Cloth','Fruit']
+
+    const Showdata=()=>{
+        var selectfilter=arrCategory.map((val)=>{
+            return `<option value=${val}>${val}</option>`
+        })
+
+        var selectinput=arrCategory.map((val)=>{
+            if(val!=='All'){
+                return `<option value=${val}>${val}</option>`
+            }
+            else{
+                return `<option hidden value=${val}>select category</option>`
+            }
+        })
+    
+
+    var product=arrProduct.map((val)=>{
+        return(
+            `<tr>
+                <td>${val.id}</td>
+                <td>${val.category}</td>
+                <td>${val.name}</td>
+                <td>${val.price}</td>
+                <td>${val.stock}</td>
+                
+               </tr> `
+        )
+    })
+
+    document.getElementById('render').innerHTML=product.join('')
+    document.getElementById('categoryFilter').innerHTML=selectfilter.join('')
+    document.getElementById('categoryInput').innerHTML=selectinput.join('')
+}
+
+Showdata()
+
+const funfiltername=()=>{
+   var keyword=document.getElementById
+}
+    </script>
+</body>
+</html>

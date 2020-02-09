@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Starlight Mall</title>
+    <style>
+        table, th, td {
+           border: 1px solid black;
+        }
+     </style>
+</head>
+<body>
+    <table>
+       <thead>
+           <tr> 
+               <td>No.Produk</td>
+               <td>Nama Produk</td>
+               <td>Gambar</td>
+               <td>Harga</td>
+               <td>Action</td>
+           </tr>
+       </thead>
+       <tbody>
+        <td></td>
+        <td></td>
+        <td><img</td>
+        <td></td>
+        <td> </td>
+       </tbody>
+       <tfoot>
+       </tfoot>
+    </table>
+
+    <table>
+      <p>
+      </p>
+        <thead>
+     </thead>
+     <tbody>
+     </tbody>
+     <tfoot>
+     </tfoot>
+
+
+    </table>
+    <p></p>
+    <p></p>
+
+
+
+
+
+
+
+
+    
+    
+    
+    <script>
+        class Produk{
+            constructor(nama,gambar,harga){
+              this.nama=nama,
+              this.gambar=gambar,
+              this.harga=harga
+        }}
+
+        let dataproduk=[
+            new Produk('Chitato','https://target.scene7.com/is/image/Target/GUEST_520cb563-bd45-4fd9-851c-939faa5ce7cf?wid=488&hei=488&fmt=pjpeg',15000),
+            new Produk('Coto Makassar','https://cdn.idntimes.com/content-images/post/20191217/hanhanny-60841941-1963894330381469-3916423929361306297-n-c5f0d13e8dbd0a9f273e96f152872cbc_600x400.jpg',25000),
+            new Produk('Konro Bakar','https://panduanwisata.id/files/2012/08/sldaengnabactt.jpg',30000)
+        ]
+        let cart=[
+
+        ]
+
+        let cartharga=[
+
+        ]
+    
+           
+      
+        var count=30
+        var time11;
+        const printdata=()=>{
+            output=''
+            for(i=0;i<dataproduk.length;i++){   
+               output+= `   <tr>
+                           <td>${i+1}</td>
+                           <td>${dataproduk[i].nama}</td>
+                           <td><img src="${dataproduk[i].gambar}" alt="'chitato'"></td>
+                            <td>${dataproduk[i].harga}</td>
+        <td><button  onclick="Pushtocart${i}()">Add to cart</button> </td>
+                             </tr>    ` 
+                            
+            }
+            return output   
+        }
+        printdata()
+        document.getElementsByTagName('tbody')[0].innerHTML=output
+        
+        
+        const hargatotal1=()=>{
+              var hargatotal=0
+              for(i=0;i<cartharga.length;i++) {
+                  hargatotal+=cartharga[i]
+              }    
+         return hargatotal
+         
+        }
+
+        const Pushtocart0=()=>{
+          var konfirmasi=confirm('Apakah anda ingin menambahkan '+dataproduk[0].nama+' ke cart?')
+        if(konfirmasi){
+            cart.push(dataproduk[0])
+            cartharga.push(dataproduk[0].harga)
+            alert('Barang berhasil ditambahkan ke keranjang')
+           
+        }else{
+            alert('Gagal menambahkan produk ke keranjang')
+           } 
+           
+           CartTableandCheckout()
+           hargatotal1()
+           textbelanja()
+        }
+
+      const Pushtocart1=()=>{
+        var konfirmasi1=confirm('Apakah anda ingin menambahkan '+dataproduk[1].nama+ ' ke cart?')
+        if(konfirmasi1){
+            cart.push(dataproduk[1])
+            cartharga.push(dataproduk[1].harga)
+            alert('Barang berhasil ditambahkan ke keranjang')
+        }
+        else{
+            alert('Gagal menambahkan produk ke keranjang')
+        }
+        CartTableandCheckout()
+           hargatotal1()
+           textbelanja()
+      }
+
+      const Pushtocart2=()=>{
+          var konfirmasi2=confirm('Apakah anda ingin menambahkan '+dataproduk[2].nama+' ke cart?')
+          if(konfirmasi2){
+              cart.push(dataproduk[2])
+              cartharga.push(dataproduk[2].harga)
+              alert('Barang berhasil ditambahkan ke keranjang')
+          }
+          else{
+              alert('Gagal menambahkan barang ke keranjang')
+          }
+          CartTableandCheckout()
+           hargatotal1()
+           textbelanja()
+      }
+     
+        const textbelanja=()=>{
+            var print=''
+            for(i=0;i<cartharga.length;i++){
+                print+=`
+                   <p>Jumlah belanjaan anda sebanyak ${cart.length}</p>
+                   <p> Harga yang harus anda bayar sebanyak ${hargatotal1()}</p>
+                
+                `
+            }
+            document.getElementsByTagName('p')[0].innerHTML=print 
+        }
+       
+        const CartTableandCheckout=()=>{
+            var tableandcheckout=''
+            for(i=0;i<cart.length;i++){
+                tableandcheckout+=`   
+                    
+                    <tr>
+                   <td>${i+1}</td>
+                    <td>${cart[i].nama}</td>
+                 <td><img src="${cart[i].gambar}" alt="" style="width:250px;height:250px;"></td>
+                        <td>${cart[i].harga}</td>
+                        <td><button id=${i} onclick="deletecart(${i})">delete from chart</button>
+                                   </tr>                   
+                                  `
+                                  
+
+            }
+            checkoutlogo= `
+                       
+                    <center><p><button onclick='checkout()'"setInterval(fungsi,1000)">Checkout</button></p></center>
+                        
+                        `
+            
+            document.getElementsByTagName('tbody')[1].innerHTML=tableandcheckout
+            document.getElementsByTagName('p')[1].innerHTML=checkoutlogo
+            console.log(tableandcheckout)
+            
+        }
+
+        const deletecart=(val)=>{
+            var confirm2=confirm('Anda yakin ingin menghapus '+cart[val].nama+' dari keranjang?')
+            if(confirm2){
+            cart.splice([val],1)
+            cartharga.splice([val],1)
+            CartTableandCheckout()
+            hargatotal1()
+            textbelanja()
+            }
+            else{
+                alert('Hapus dibatalkan!')
+            }
+        }
+
+
+        const checkout=()=>{
+            time11=setInterval(fungsi,1000)  
+            var belanja1=`
+                     <center>Total belanja anda : ${hargatotal1()}</center>
+                     <center>Masukkan Nominal<input id=bayars type="number"></input><button onclick="bayar()">Bayar</button><center>
+                        <p></p>
+                `
+               console.log(belanja1)
+               document.getElementsByTagName('p')[4].innerHTML=belanja1
+            }
+             const fungsi=()=>{   
+                var decrement=--count
+           var waktu1=` <center><p>Waktu yang tersisa : ${count}</p></p>
+                                                                `
+           document.getElementsByTagName('p')[5].innerHTML=waktu1
+           if(count===0){
+            clearInterval(time11)
+            cart=[]
+            cartharga=[]
+            alert('Anda kehabisan waktu barang di keranjang anda di kosongkan')
+            window.location.reload()
+           
+                 }  
+        }
+
+        const bayar=()=>{
+                 var uang=document.getElementById('bayars').value
+                 var Kembalian=uang-hargatotal1()
+                 if (uang>=hargatotal1()){
+                     alert('Kembalian anda sebanyak '+Kembalian)
+                     alert('terima kasih telah berbelanja di toko kami')
+                     window.location.reload()
+                 }
+                 else{
+                     alert('Uang anda tidak cukup ,silahkan masukkan input yang benar sebelum waktu habis')
+                 }
+        }
+
+
+     
+            
+           
+           
+           
+            
+        
+
+     
+        
+        
+
+        
+        
+       
+       
+
+        
+        
+     
+        
+    </script>
+</body>
+</html>
